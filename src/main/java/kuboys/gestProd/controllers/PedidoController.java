@@ -1,6 +1,6 @@
 package kuboys.gestProd.controllers;
 
-import kuboys.gestProd.models.pedidoService;
+import kuboys.gestProd.services.PedidoService;
 import kuboys.gestProd.models.Pedido;
 import kuboys.gestProd.models.Produto;
 
@@ -14,52 +14,52 @@ public class PedidoController {
 
     @GetMapping
     public List<Pedido> getAllPedidos() {
-        return pedidoService.obterListaPedidos();
+        return PedidoService.obterListaPedidos();
     }
 
     @GetMapping("/{id}")
     public Pedido getPedidoById(@PathVariable Integer id) {
-        return pedidoService.getPedidoById(id);
+        return PedidoService.getPedidoById(id);
     }
 
     @PostMapping
     public Pedido createPedido(@RequestBody Pedido pedido) {
-        pedido.setId(pedidoService.getProximoPedidoId());
-        pedidoService.pedidosMap.put(pedido.getId(), pedido);
-        pedidoService.salvarDados();
+        pedido.setId(PedidoService.getProximoPedidoId());
+        PedidoService.pedidosMap.put(pedido.getId(), pedido);
+        PedidoService.salvarDados();
         return pedido;
     }
 
     @PutMapping("/{id}")
     public Pedido updatePedido(@PathVariable Integer id, @RequestBody Pedido pedidoDetails) {
-        Pedido pedido = pedidoService.getPedidoById(id);
+        Pedido pedido = PedidoService.getPedidoById(id);
 
         pedido.setProdutos(pedidoDetails.getProdutos());
         pedido.setDataPedido(pedidoDetails.getDataPedido());
         pedido.setStatus(pedidoDetails.getStatus());
 
-        pedidoService.pedidosMap.put(id, pedido);
-        pedidoService.salvarDados();
+        PedidoService.pedidosMap.put(id, pedido);
+        PedidoService.salvarDados();
 
         return pedido;
     }
 
     @DeleteMapping("/{id}")
     public void deletePedido(@PathVariable Integer id) {
-        Pedido pedido = pedidoService.getPedidoById(id);
-        pedidoService.pedidosMap.remove(id);
-        pedidoService.salvarDados();
+        Pedido pedido = PedidoService.getPedidoById(id);
+        PedidoService.pedidosMap.remove(id);
+        PedidoService.salvarDados();
     }
 
     @PostMapping("/{pedidoId}/produtos")
     public void adicionarProdutoPedido(@PathVariable Integer pedidoId, @RequestBody Produto produto, @RequestParam int quantidade) {
-        pedidoService.adicionarProdutoPedido(pedidoId, produto, quantidade);
-        pedidoService.salvarDados();
+        PedidoService.adicionarProdutoPedido(pedidoId, produto, quantidade);
+        PedidoService.salvarDados();
     }
 
     @DeleteMapping("/{pedidoId}/produtos")
     public void removerProdutoPedido(@PathVariable Integer pedidoId, @RequestParam String nomeProduto) {
-        pedidoService.removerProdutoPedido(pedidoId, nomeProduto);
-        pedidoService.salvarDados();
+        PedidoService.removerProdutoPedido(pedidoId, nomeProduto);
+        PedidoService.salvarDados();
     }
 }

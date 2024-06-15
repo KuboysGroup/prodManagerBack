@@ -1,18 +1,17 @@
 package kuboys.gestProd.models;
 
+import jakarta.persistence.*;
 import kuboys.gestProd.enums.EnumStatusPedido;
-import javax.persistence.*;
+import kuboys.gestProd.services.PedidoService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import static kuboys.gestProd.models.pedidoService.getProximoPedidoId;
 
 @Entity
 public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<ProdutoPedido> produtos;
     Data dataEntrega;
     Data dataPedido;
@@ -27,7 +26,7 @@ public class Pedido implements Serializable {
     }
 
     public Pedido(List<ProdutoPedido> produtos, Data dataEntrega, Data dataPedido, EnumStatusPedido status) {
-        this.id = getProximoPedidoId();
+        this.id = PedidoService.getProximoPedidoId();
         this.produtos = produtos;
         this.dataEntrega = dataEntrega;
         this.dataPedido = dataPedido;

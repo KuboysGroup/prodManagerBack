@@ -1,12 +1,12 @@
-package kuboys.gestProd.models;
+package kuboys.gestProd.services;
 
 import kuboys.gestProd.enums.*;
 import kuboys.gestProd.exceptions.GestException;
+import kuboys.gestProd.models.*;
 
 import java.io.*;
 import java.util.*;
-
-public class pedidoService {
+public class PedidoService {
     public static List<Material> materialList = new ArrayList<>();
     public static List<Componente> componentsList = new ArrayList<>();
     public static List<ProdutoPedido> produtosList = new ArrayList<>();

@@ -1,7 +1,6 @@
 package kuboys.gestProd.models;
 
 import java.io.Serializable;
-
 public abstract class Produto implements Serializable {
 
     protected String nome;
