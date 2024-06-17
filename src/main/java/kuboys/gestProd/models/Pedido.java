@@ -13,23 +13,23 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     List<ProdutoPedido> produtos;
-    Data dataEntrega;
-    Data dataPedido;
+    String dataEntrega;
+    String dataPedido;
     EnumStatusPedido status;
 
     public Pedido() {
         this.setId(0);
         this.setProdutos(new ArrayList<>());
-        this.setDataEntrega(Data.ZERO);
-        this.setDataPedido(Data.ZERO);
+        this.setDataEntrega("");
+        this.setDataPedido("");
         this.setStatus(EnumStatusPedido.EM_ABERTO);
     }
 
     public Pedido(List<ProdutoPedido> produtos, Data dataEntrega, Data dataPedido, EnumStatusPedido status) {
         this.id = PedidoService.getProximoPedidoId();
         this.produtos = produtos;
-        this.dataEntrega = dataEntrega;
-        this.dataPedido = dataPedido;
+        this.dataEntrega = dataEntrega.toString();
+        this.dataPedido = dataPedido.toString();
         this.status = status;
     }
 
@@ -49,20 +49,20 @@ public class Pedido implements Serializable {
         this.produtos = produtos;
     }
 
-    public Data getDataEntrega() {
+    public String getDataEntrega() {
         return dataEntrega;
     }
 
-    public void setDataEntrega(Data dataEntrega) {
-        this.dataEntrega = dataEntrega;
+    public void setDataEntrega(String dataEntrega) {
+        this.dataEntrega = dataEntrega.toString();
     }
 
-    public Data getDataPedido() {
+    public String getDataPedido() {
         return dataPedido;
     }
 
-    public void setDataPedido(Data dataPedido) {
-        this.dataPedido = dataPedido;
+    public void setDataPedido(String dataPedido) {
+        this.dataPedido = dataPedido.toString();
     }
 
     public EnumStatusPedido getStatus() {
