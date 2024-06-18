@@ -1,16 +1,12 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
-import jakarta.persistence.*;
-import kuboys.gestProd.enums.EnumStatusPedido;
-import kuboys.gestProd.services.PedidoService;
+import kuboys.enums.EnumStatusPedido;
+import kuboys.services.PedidoService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 public class Pedido implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     List<ProdutoPedido> produtos;
     String dataEntrega;

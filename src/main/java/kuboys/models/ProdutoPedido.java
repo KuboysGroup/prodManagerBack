@@ -1,6 +1,4 @@
-package kuboys.gestProd.models;
-
-import jakarta.persistence.Entity;
+package kuboys.models;
 
 import java.io.Serializable;
 public class ProdutoPedido implements Serializable {

@@ -1,4 +1,4 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
 public class SistemaCamaraQuente extends Produto{
 

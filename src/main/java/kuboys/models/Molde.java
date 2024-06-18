@@ -1,7 +1,7 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
-import kuboys.gestProd.enums.EnumRamoProduto;
-import kuboys.gestProd.enums.EnumTipoInjecao;
+import kuboys.enums.EnumRamoProduto;
+import kuboys.enums.EnumTipoInjecao;
 
 import java.util.ArrayList;
 import java.util.List;

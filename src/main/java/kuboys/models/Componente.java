@@ -1,4 +1,4 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;

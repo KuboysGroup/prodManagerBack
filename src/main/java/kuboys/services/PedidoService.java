@@ -1,8 +1,10 @@
-package kuboys.gestProd.services;
+package kuboys.services;
 
-import kuboys.gestProd.enums.*;
-import kuboys.gestProd.exceptions.GestException;
-import kuboys.gestProd.models.*;
+import kuboys.enums.*;
+import kuboys.exceptions.GestException;
+import kuboys.enums.*;
+import kuboys.models.*;
+import kuboys.models.*;
 
 import java.io.*;
 import java.util.*;

@@ -1,6 +1,6 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
-import kuboys.gestProd.enums.EnumTipoFerramenta;
+import kuboys.enums.EnumTipoFerramenta;
 
 public class Ferramenta extends Produto{
 

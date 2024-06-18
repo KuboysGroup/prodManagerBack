@@ -1,6 +1,6 @@
-package kuboys.gestProd.exceptions;
+package kuboys.exceptions;
 
-import kuboys.gestProd.enums.EnumGravidadeException;
+import kuboys.enums.EnumGravidadeException;
 
 public class GestException extends RuntimeException{
     private String mensagem;
