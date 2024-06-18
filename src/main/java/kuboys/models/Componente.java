@@ -1,13 +1,10 @@
 package kuboys.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Componente  implements Serializable {
-    private static final long serialVersionUID = -8152177080706572554L;
+public class Componente {
     @JsonProperty("nome")
     private String nome;
     @JsonProperty("composicao")
@@ -16,9 +13,6 @@ public class Componente  implements Serializable {
     private int quantEstoque;
 
     public Componente() {
-        this.nome = "";
-        this.composicao = new ArrayList<>();
-        this.quantEstoque = 0;
     }
 
     public Componente(String nome, List<Material> composicao, int quantEstoque) {

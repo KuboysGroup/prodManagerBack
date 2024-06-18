@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-public class Dimensoes implements Serializable {
-    private static final long serialVersionUID = 6345548402362546150L;
+public class Dimensoes {
     @JsonProperty("altura")
     private double altura;
     @JsonProperty("largura")
@@ -14,9 +13,6 @@ public class Dimensoes implements Serializable {
     private double profundidade;
 
     public Dimensoes() {
-        this.altura = 0.0;
-        this.largura = 0.0;
-        this.profundidade = 0.0;
     }
 
     public Dimensoes(double altura, double largura, double profundidade) {

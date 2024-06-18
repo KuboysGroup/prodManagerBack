@@ -23,10 +23,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        PedidoService.carregarDados();
-        Pedido ped = PedidoService.getPedidoById(1);
         final HttpServer server = startServer();
-        System.out.println(ped.getId());
+        PedidoService.gerarRegistrosDeTeste();
         System.out.println(String.format("Jersey app started with endpoints available at %s\nHit CTRL+C to stop it...", BASE_URI));
         try {
             Thread.currentThread().join();

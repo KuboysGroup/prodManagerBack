@@ -24,13 +24,19 @@ public class PedidoController {
         return PedidoService.getPedidoById(id);
     }
 
+    @GET
+    @Path("/teste")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String gerarPedTestes() {
+        return PedidoService.gerarTesteComRetorno();
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Pedido createPedido(Pedido pedido) {
         pedido.setId(PedidoService.getProximoPedidoId());
         PedidoService.pedidosMap.put(pedido.getId(), pedido);
-        PedidoService.salvarDados();
         return pedido;
     }
 
@@ -46,7 +52,6 @@ public class PedidoController {
         pedido.setStatus(pedidoDetails.getStatus());
 
         PedidoService.pedidosMap.put(id, pedido);
-        PedidoService.salvarDados();
 
         return pedido;
     }
@@ -56,7 +61,6 @@ public class PedidoController {
     public void deletePedido(@PathParam("id") Integer id) {
         Pedido pedido = PedidoService.getPedidoById(id);
         PedidoService.pedidosMap.remove(id);
-        PedidoService.salvarDados();
     }
 
     @POST
@@ -64,13 +68,11 @@ public class PedidoController {
     @Consumes(MediaType.APPLICATION_JSON)
     public void adicionarProdutoPedido(@PathParam("pedidoId") Integer pedidoId, Produto produto, @QueryParam("quantidade") int quantidade) {
         PedidoService.adicionarProdutoPedido(pedidoId, produto, quantidade);
-        PedidoService.salvarDados();
     }
 
     @DELETE
     @Path("/{pedidoId}/produtos")
     public void removerProdutoPedido(@PathParam("pedidoId") Integer pedidoId, @QueryParam("nomeProduto") String nomeProduto) {
         PedidoService.removerProdutoPedido(pedidoId, nomeProduto);
-        PedidoService.salvarDados();
     }
 }

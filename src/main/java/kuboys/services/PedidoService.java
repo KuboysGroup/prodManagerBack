@@ -15,28 +15,6 @@ public class PedidoService {
     public static HashMap<Integer, Pedido> pedidosMap = new HashMap<>();
     private static Integer id = 0;
 
-    public static void salvarDados() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("dados.ser"))) {
-            oos.writeObject(materialList);
-            oos.writeObject(componentsList);
-            oos.writeObject(produtosList);
-            oos.writeObject(pedidosMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void carregarDados() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("dados.ser"))) {
-            materialList = (List<Material>) ois.readObject();
-            componentsList = (List<Componente>) ois.readObject();
-            produtosList = (List<ProdutoPedido>) ois.readObject();
-            pedidosMap = (HashMap<Integer, Pedido>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
     private static <T> void validarListaNaoVazia(List<T> lista, String mensagemErro) {
         if (lista == null || lista.isEmpty()) {
             throw new GestException(EnumGravidadeException.INFO, mensagemErro);
@@ -131,6 +109,7 @@ public class PedidoService {
     }
 
     public static void gerarRegistrosDeTeste() {
+        System.out.println("Entrou no gerar registros teste");
         Data dataFutura = new Data(Data.hoje().getDia()+3, Data.hoje().getMes()+1, Data.hoje().getAno());
 
         Material material1 = new Material("Aço", 100);
@@ -166,5 +145,22 @@ public class PedidoService {
 
         pedidosMap.put(pedido1.getId(), pedido1);
         pedidosMap.put(pedido2.getId(), pedido2);
+        System.out.println("TERMINOU DE gerar registros teste");
     }
+
+    public static String gerarTesteComRetorno(){
+        String retorno = "Lista vazia, nao criou pedidos";
+        gerarRegistrosDeTeste();
+        List<Pedido> pedList = obterListaPedidos();
+
+        if (!pedList.isEmpty()){
+            System.out.println("Lista de pedidos size: " + pedList.size());
+            Pedido ped = pedList.get(0);
+            retorno = "pedidos de teste foram criados com sucesso. pedido id: " + ped.getId().toString();
+        }
+        System.out.println("Lista de pedidos size: " + pedList.size());
+
+        return retorno;
+    }
+
 }

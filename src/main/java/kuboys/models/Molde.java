@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Molde extends Produto{
-    private static final long serialVersionUID = 504755128038306772L;
     @JsonProperty("tipoInjecao")
     private EnumTipoInjecao tipoInjecao;
     @JsonProperty("ramoMolde")
@@ -17,10 +16,6 @@ public class Molde extends Produto{
     private List<Componente> componentes;
 
     public Molde() {
-        super();
-        this.tipoInjecao = null;
-        this.ramoMolde = null;
-        this.componentes = new ArrayList<>();
     }
 
     public Molde(String nome, Dimensoes dimensoes, boolean tratamentoTermico, EnumTipoInjecao tipoInjecao, EnumRamoProduto ramoMolde, List<Componente> componentes) {

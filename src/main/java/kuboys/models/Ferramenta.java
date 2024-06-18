@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import kuboys.enums.EnumTipoFerramenta;
 
 public class Ferramenta extends Produto{
-    private static final long serialVersionUID = 3989054360555057931L;
     @JsonProperty("tipoFerramenta")
     private EnumTipoFerramenta tipoFerramenta;
     @JsonProperty("composicao")
@@ -15,11 +14,6 @@ public class Ferramenta extends Produto{
     private String finalidade;
 
     public Ferramenta() {
-        super();
-        this.tipoFerramenta = null;
-        this.composicao = new Material();
-        this.revestimento = new Material();
-        this.finalidade = "";
     }
 
     public Ferramenta(String nome, Dimensoes dimensoes, boolean tratamentoTermico, EnumTipoFerramenta tipoFerramenta, Material composicao, Material revestimento, String finalidade) {

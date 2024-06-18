@@ -3,12 +3,10 @@ package kuboys.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import kuboys.enums.EnumStatusPedido;
 import kuboys.services.PedidoService;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pedido implements Serializable {
-    private static final long serialVersionUID = 9028850319026945575L;
+public class Pedido {
     @JsonProperty("id")
     private Integer id;
 
@@ -25,11 +23,6 @@ public class Pedido implements Serializable {
     private EnumStatusPedido status;
 
     public Pedido() {
-        this.setId(0);
-        this.setProdutos(new ArrayList<>());
-        this.setDataEntrega("");
-        this.setDataPedido("");
-        this.setStatus(EnumStatusPedido.EM_ABERTO);
     }
 
     public Pedido(List<ProdutoPedido> produtos, Data dataEntrega, Data dataPedido, EnumStatusPedido status) {
