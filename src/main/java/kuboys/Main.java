@@ -24,7 +24,6 @@ public class Main {
 
     public static void main(String[] args) {
         final HttpServer server = startServer();
-        PedidoService.gerarRegistrosDeTeste();
         System.out.println(String.format("Jersey app started with endpoints available at %s\nHit CTRL+C to stop it...", BASE_URI));
         try {
             Thread.currentThread().join();

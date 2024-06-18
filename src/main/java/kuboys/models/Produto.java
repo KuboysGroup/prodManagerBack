@@ -1,7 +1,7 @@
 package kuboys.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-public abstract class Produto {
+public class Produto {
     @JsonProperty("nome")
     protected String nome;
     @JsonProperty("dimensoes")

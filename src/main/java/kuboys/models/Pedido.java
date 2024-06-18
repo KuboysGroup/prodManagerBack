@@ -3,9 +3,7 @@ package kuboys.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import kuboys.enums.EnumStatusPedido;
 import kuboys.services.PedidoService;
-import java.util.ArrayList;
 import java.util.List;
-
 public class Pedido {
     @JsonProperty("id")
     private Integer id;
@@ -13,10 +11,10 @@ public class Pedido {
     @JsonProperty("produtos")
     private List<ProdutoPedido> produtos;
 
-    @JsonProperty("data_entrega")
+    @JsonProperty("dataEntrega")
     private String dataEntrega;
 
-    @JsonProperty("data_pedido")
+    @JsonProperty("dataPedido")
     private String dataPedido;
 
     @JsonProperty("status")
