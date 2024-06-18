@@ -1,11 +1,16 @@
 package kuboys.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 public class Dimensoes implements Serializable {
-
+    private static final long serialVersionUID = 6345548402362546150L;
+    @JsonProperty("altura")
     private double altura;
+    @JsonProperty("largura")
     private double largura;
+    @JsonProperty("profundidade")
     private double profundidade;
 
     public Dimensoes() {

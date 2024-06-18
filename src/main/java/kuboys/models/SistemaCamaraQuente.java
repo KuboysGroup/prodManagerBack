@@ -1,8 +1,12 @@
 package kuboys.models;
 
-public class SistemaCamaraQuente extends Produto{
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class SistemaCamaraQuente extends Produto{
+    private static final long serialVersionUID = 1872448921919223045L;
+    @JsonProperty("materialResistencia")
     private Material materialResistencia;
+    @JsonProperty("tempOperacao")
     private double tempOperacao;
 
     public SistemaCamaraQuente() {

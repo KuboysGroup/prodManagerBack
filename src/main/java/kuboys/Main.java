@@ -5,6 +5,7 @@ import kuboys.services.PedidoService;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.jackson.JacksonFeature;
 
 import javax.inject.Inject;
 import java.net.URI;
@@ -12,10 +13,12 @@ import java.net.URI;
 public class Main {
     @Inject
     PedidoService pedidoService;
-    public static final String BASE_URI = "http://localhost:8080/";
+    public static final String BASE_URI = "http://192.168.4.26:8484/";
 
     public static HttpServer startServer() {
-        final ResourceConfig rc = new ResourceConfig().packages("kuboys.controllers");
+        final ResourceConfig rc = new ResourceConfig()
+                .packages("kuboys.controllers")
+                .register(JacksonFeature.class);
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
     }
 

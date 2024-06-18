@@ -1,10 +1,14 @@
 package kuboys.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 public class Material implements Serializable {
-
+    private static final long serialVersionUID = -2271915122007278156L;
+    @JsonProperty("nome")
     private String nome;
+    @JsonProperty("quantEstoque")
     private int quantEstoque;
 
     public Material() {

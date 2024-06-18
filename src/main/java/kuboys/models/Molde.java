@@ -1,5 +1,6 @@
 package kuboys.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import kuboys.enums.EnumRamoProduto;
 import kuboys.enums.EnumTipoInjecao;
 
@@ -7,9 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Molde extends Produto{
-
+    private static final long serialVersionUID = 504755128038306772L;
+    @JsonProperty("tipoInjecao")
     private EnumTipoInjecao tipoInjecao;
+    @JsonProperty("ramoMolde")
     private EnumRamoProduto ramoMolde;
+    @JsonProperty("componentes")
     private List<Componente> componentes;
 
     public Molde() {

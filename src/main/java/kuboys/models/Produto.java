@@ -1,10 +1,15 @@
 package kuboys.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 public abstract class Produto implements Serializable {
-
+    private static final long serialVersionUID = -2758992658107210691L;
+    @JsonProperty("nome")
     protected String nome;
+    @JsonProperty("dimensoes")
     protected Dimensoes dimensoes;
+    @JsonProperty("tratamentoTermico")
     protected boolean tratamentoTermico;
 
     public Produto() {

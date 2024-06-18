@@ -3,21 +3,24 @@ package kuboys.models;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Validator {
 
-    private static final Map<Class<?>, Class<?>> PRIMITIVES_TO_WRAPPERS = Map.of(
-            boolean.class, Boolean.class,
-            byte.class, Byte.class,
-            char.class, Character.class,
-            double.class, Double.class,
-            float.class, Float.class,
-            int.class, Integer.class,
-            long.class, Long.class,
-            short.class, Short.class,
-            void.class, Void.class
-    );
+    private static final Map<Class<?>, Class<?>> PRIMITIVES_TO_WRAPPERS = new HashMap<Class<?>, Class<?>>();
+
+    static {
+        PRIMITIVES_TO_WRAPPERS.put(boolean.class, Boolean.class);
+        PRIMITIVES_TO_WRAPPERS.put(byte.class, Byte.class);
+        PRIMITIVES_TO_WRAPPERS.put(char.class, Character.class);
+        PRIMITIVES_TO_WRAPPERS.put(double.class, Double.class);
+        PRIMITIVES_TO_WRAPPERS.put(float.class, Float.class);
+        PRIMITIVES_TO_WRAPPERS.put(int.class, Integer.class);
+        PRIMITIVES_TO_WRAPPERS.put(long.class, Long.class);
+        PRIMITIVES_TO_WRAPPERS.put(short.class, Short.class);
+        PRIMITIVES_TO_WRAPPERS.put(void.class, Void.class);
+    }
 
     private Validator() {
     }
@@ -26,18 +29,20 @@ public class Validator {
         if (valor == null) {
             return false;
         }
-
-        Class<?> valorClasse = valor.getClass();
-        Class<?> wrapperClasse = PRIMITIVES_TO_WRAPPERS.getOrDefault(valorClasse, valorClasse);
-
-        if (Number.class.isAssignableFrom(wrapperClasse)) {
-            return !valor.equals(0);
-        } else if (Character.class.isAssignableFrom(wrapperClasse)) {
-            return !valor.equals(' ');
-        } else if (BigDecimal.class.isAssignableFrom(wrapperClasse)) {
+        if (valor instanceof Integer) {
+            return (Integer) valor != 0;
+        } else if (valor instanceof Long) {
+            return (Long) valor != 0;
+        } else if (valor instanceof Double) {
+            return (Double) valor != 0d;
+        } else if (valor instanceof Character) {
+            return (Character) valor != ' ';
+        } else if (valor instanceof BigDecimal) {
             return ((BigDecimal) valor).doubleValue() != 0;
+        } else if (valor instanceof Data) {
+            return !valor.equals(Data.ZERO);
         } else if (valor instanceof String) {
-            return !((String) valor).trim().isEmpty();
+            return !((String) valor).trim().equals("");
         } else if (valor.getClass().isArray()) {
             return Array.getLength(valor) > 0;
         } else if (valor instanceof Collection) {
@@ -47,16 +52,13 @@ public class Validator {
             Map<?, ?> map = (Map<?, ?>) valor;
             return !map.isEmpty();
         } else if (valor instanceof Boolean) {
-            return (Boolean) valor;
+            return (Boolean) valor != null;
         } else if (valor instanceof byte[]) {
             return ((byte[]) valor).length > 0;
         } else {
             throw new IllegalArgumentException(
-                    "Tipo " + valorClasse.getSimpleName() + " não tratado em Validator.temValor");
+                    "Tipo " + valor.getClass().getSimpleName() + " não tratado em Validator.temValor");
         }
     }
 
-    public static boolean tipoNaoTemValor(Object valor){
-        return !tipoTemValor(valor);
-    }
 }
