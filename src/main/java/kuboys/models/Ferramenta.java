@@ -16,8 +16,8 @@ public class Ferramenta extends Produto{
     public Ferramenta() {
     }
 
-    public Ferramenta(String nome, Dimensoes dimensoes, boolean tratamentoTermico, EnumTipoFerramenta tipoFerramenta, Material composicao, Material revestimento, String finalidade) {
-        super(nome, dimensoes, tratamentoTermico);
+    public Ferramenta(String nome, Dimensoes dimensoes, boolean tratamentoTermico, int quantidade, EnumTipoFerramenta tipoFerramenta, Material composicao, Material revestimento, String finalidade) {
+        super(nome, dimensoes, tratamentoTermico, quantidade);
         this.tipoFerramenta = tipoFerramenta;
         this.composicao = composicao;
         this.revestimento = revestimento;

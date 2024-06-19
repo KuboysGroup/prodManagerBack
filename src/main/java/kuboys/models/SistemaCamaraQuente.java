@@ -10,8 +10,8 @@ public class SistemaCamaraQuente extends Produto{
     public SistemaCamaraQuente() {
     }
 
-    public SistemaCamaraQuente(String nome, Dimensoes dimensoes, boolean tratamentoTermico, Material materialResistencia, double tempOperacao) {
-        super(nome, dimensoes, tratamentoTermico);
+    public SistemaCamaraQuente(String nome, Dimensoes dimensoes, boolean tratamentoTermico, int quantidade, Material materialResistencia, double tempOperacao) {
+        super(nome, dimensoes, tratamentoTermico, quantidade);
         this.materialResistencia = materialResistencia;
         this.tempOperacao = tempOperacao;
     }

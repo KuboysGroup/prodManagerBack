@@ -12,7 +12,11 @@ public class PedidoService {
     public static List<Material> materialList = new ArrayList<>();
     public static List<Componente> componentsList = new ArrayList<>();
     public static List<ProdutoPedido> produtosList = new ArrayList<>();
-    public static HashMap<Integer, Pedido> pedidosMap = new HashMap<>();
+
+    public static HashMap<Integer, PedidoMoldes> pedidosMoldeMap = new HashMap<>();
+    public static HashMap<Integer, PedidoFerramentas> pedidosFerramentasMap = new HashMap<>();
+    public static HashMap<Integer, PedidoSistemaCamaraQuente> pedidosSistemaCamaraQuenteMap = new HashMap<>();
+
     private static Integer id = 0;
 
     private static <T> void validarListaNaoVazia(List<T> lista, String mensagemErro) {
@@ -36,16 +40,33 @@ public class PedidoService {
         return new ArrayList<>(produtosList);
     }
 
-    public static List<Pedido> obterListaPedidos() {
-        validarListaNaoVazia(new ArrayList<>(pedidosMap.values()), "Não há registro de pedidos");
-        return new ArrayList<>(pedidosMap.values());
+    public static List<PedidoMoldes> obterListaPedidosMolde() {
+        validarListaNaoVazia(new ArrayList<>(pedidosMoldeMap.values()), "Não há registro de pedidos");
+        return new ArrayList<>(pedidosMoldeMap.values());
     }
 
-    public static Pedido getPedidoById(Integer id) {
-        return Optional.ofNullable(pedidosMap.get(id))
+    public static PedidoMoldes getPedidoMoldeById(Integer id) {
+        return Optional.ofNullable(pedidosMoldeMap.get(id))
                 .orElseThrow(() -> new GestException(EnumGravidadeException.INFO, "Id inválido"));
     }
 
+    public static List<PedidoFerramentas> obterListaPedidosFerramentas() {
+        validarListaNaoVazia(new ArrayList<>(pedidosFerramentasMap.values()), "Não há registro de pedidos");
+        return new ArrayList<>(pedidosFerramentasMap.values());
+    }
+
+    public static PedidoFerramentas getPedidoFerramentasById(Integer id) {
+        return Optional.ofNullable(pedidosFerramentasMap.get(id)).orElseThrow(() -> new GestException(EnumGravidadeException.INFO, "Id inválido"));
+    }
+
+    public static List<PedidoSistemaCamaraQuente> obterListaPedidosSistemaCamaraQuente() {
+        validarListaNaoVazia(new ArrayList<>(pedidosSistemaCamaraQuenteMap.values()), "Não há registro de pedidos");
+        return new ArrayList<>(pedidosSistemaCamaraQuenteMap.values());
+    }
+
+    public static PedidoSistemaCamaraQuente getPedidoSistemaCamaraQuenteById(Integer id) {
+        return Optional.ofNullable(pedidosSistemaCamaraQuenteMap.get(id)).orElseThrow(() -> new GestException(EnumGravidadeException.INFO, "Id inválido"));
+    }
 
     public static Integer getProximoPedidoId() {
         return ++id;
@@ -83,16 +104,16 @@ public class PedidoService {
     }
 
 
-    public static void adicionarProdutoPedido(Integer pedidoId, Produto produto, int quantidade) {
-        Pedido pedido = getPedidoById(pedidoId);
-        pedido.getProdutos().add(new ProdutoPedido(produto, quantidade));
-    }
-
-
-    public static void removerProdutoPedido(Integer pedidoId, String nomeProduto) {
-        Pedido pedido = getPedidoById(pedidoId);
-        pedido.getProdutos().removeIf(prod -> prod.getProduto().getNome().equals(nomeProduto));
-    }
+//    public static void adicionarProdutoPedido(Integer pedidoId, Produto produto, int quantidade) {
+//        Pedido pedido = getPedidoById(pedidoId);
+//        pedido.getProdutos().add(new ProdutoPedido(produto, quantidade));
+//    }
+//
+//
+//    public static void removerProdutoPedido(Integer pedidoId, String nomeProduto) {
+//        Pedido pedido = getPedidoById(pedidoId);
+//        pedido.getProdutos().removeIf(prod -> prod.getProduto().getNome().equals(nomeProduto));
+//    }
 
 
     public static String gerarRelatorioEstoque() {
@@ -115,6 +136,7 @@ public class PedidoService {
         Material material1 = new Material("Aço", 100);
         Material material2 = new Material("Alumínio", 200);
         Material material3 = new Material("Cobre", 150);
+        Material material4 = new Material("Borracha", 234);
 
         materialList.addAll(Arrays.asList(material1, material2, material3));
 
@@ -124,34 +146,40 @@ public class PedidoService {
 
         componentsList.addAll(Arrays.asList(componente1, componente2, componente3));
 
-        SistemaCamaraQuente produto1 = new SistemaCamaraQuente("Sistema A", new Dimensoes(10.0, 5.0, 2.0), true, material1, 200.0);
-        Ferramenta produto2 = new Ferramenta("Ferramenta B", new Dimensoes(15.0, 7.5, 3.0), false, EnumTipoFerramenta.BROCA, material2, material3, "Uso Geral");
-        Molde produto3 = new Molde("Molde C", new Dimensoes(20.0, 10.0, 4.0), true, EnumTipoInjecao.ALUMINIO, EnumRamoProduto.AUTOMOTIVO, Arrays.asList(componente1, componente2));
+        SistemaCamaraQuente produto1 = new SistemaCamaraQuente("Sistema A", new Dimensoes(10.0, 5.0, 2.0), true, 12, material1, 200.0);
+        Ferramenta ferramenta1 = new Ferramenta("Ferramenta B", new Dimensoes(15.0, 7.5, 3.0), false, 43, EnumTipoFerramenta.BROCA, material2, material3, "Uso Geral");
+        Ferramenta ferramenta2 = new Ferramenta("Ferramenta A", new Dimensoes(4.0, 73.5, 12.0), false, 21, EnumTipoFerramenta.CABECOTE, material4, material3, "Uso Geral");
+        Molde molde1 = new Molde("Molde C", new Dimensoes(20.0, 10.0, 4.0), true, 3, EnumTipoInjecao.ALUMINIO, EnumRamoProduto.AUTOMOTIVO, Arrays.asList(componente1, componente2));
 
-        produtosList.addAll(Arrays.asList(
-                new ProdutoPedido(produto1, 10),
-                new ProdutoPedido(produto2, 5),
-                new ProdutoPedido(produto3, 2)
+//        produtosList.addAll(Arrays.asList(
+//                new ProdutoPedido(produto1, 10),
+//                new ProdutoPedido(produto2, 5),
+//                new ProdutoPedido(produto3, 2)
+//        ));
+//
+//        Pedido pedido1 = new Pedido(Arrays.asList(
+//                new ProdutoPedido(produto1, 10),
+//                new ProdutoPedido(produto2, 5)
+//        ), Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO);
+
+        PedidoFerramentas pedidoFerramentas1 = new PedidoFerramentas(Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO, Arrays.asList(ferramenta1, ferramenta2));
+        PedidoFerramentas pedidoFerramentas2 = new PedidoFerramentas(Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO, Arrays.asList(ferramenta2));
+
+        PedidoMoldes pedido2 = new PedidoMoldes(Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO, Arrays.asList(
+                molde1
         ));
 
-        Pedido pedido1 = new Pedido(Arrays.asList(
-                new ProdutoPedido(produto1, 10),
-                new ProdutoPedido(produto2, 5)
-        ), Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO);
-
-        Pedido pedido2 = new Pedido(Arrays.asList(
-                new ProdutoPedido(produto3, 2)
-        ), Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO);
-
-        pedidosMap.put(pedido1.getId(), pedido1);
-        pedidosMap.put(pedido2.getId(), pedido2);
-        System.out.println("TERMINOU DE gerar registros teste");
+        pedidosFerramentasMap.put(pedidoFerramentas1.getId(), pedidoFerramentas1);
+        pedidosFerramentasMap.put(pedidoFerramentas2.getId(), pedidoFerramentas2);
+        pedidosMoldeMap.put(pedido2.getId(), pedido2);
+//        pedidosMap.put(pedido2.getId(), pedido2);
+//        System.out.println("TERMINOU DE gerar registros teste");
     }
 
     public static String gerarTesteComRetorno(){
         String retorno = "Lista vazia, nao criou pedidos";
         gerarRegistrosDeTeste();
-        List<Pedido> pedList = obterListaPedidos();
+        List<PedidoMoldes> pedList = obterListaPedidosMolde();
 
         if (!pedList.isEmpty()){
             System.out.println("Lista de pedidos size: " + pedList.size());

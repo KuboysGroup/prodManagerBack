@@ -3,20 +3,15 @@ package kuboys.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import kuboys.enums.EnumStatusPedido;
 import kuboys.services.PedidoService;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Pedido {
+public abstract class Pedido {
     @JsonProperty("id")
     private Integer id;
 
-    @JsonProperty("produtos")
-    private List<ProdutoPedido> produtos;
-
-    @JsonProperty("data_entrega")
+    @JsonProperty("dataEntrega")
     private String dataEntrega;
 
-    @JsonProperty("data_pedido")
+    @JsonProperty("dataPedido")
     private String dataPedido;
 
     @JsonProperty("status")
@@ -25,9 +20,8 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(List<ProdutoPedido> produtos, Data dataEntrega, Data dataPedido, EnumStatusPedido status) {
+    public Pedido(Data dataEntrega, Data dataPedido, EnumStatusPedido status) {
         this.id = PedidoService.getProximoPedidoId();
-        this.produtos = produtos;
         this.dataEntrega = dataEntrega.toString();
         this.dataPedido = dataPedido.toString();
         this.status = status;
@@ -39,14 +33,6 @@ public class Pedido {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public List<ProdutoPedido> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<ProdutoPedido> produtos) {
-        this.produtos = produtos;
     }
 
     public String getDataEntrega() {

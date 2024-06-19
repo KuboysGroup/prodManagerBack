@@ -13,7 +13,7 @@ import java.net.URI;
 public class Main {
     @Inject
     PedidoService pedidoService;
-    public static final String BASE_URI = "http://192.168.4.26:8484/";
+    public static final String BASE_URI = "http://192.168.4.14:8080/";
 
     public static HttpServer startServer() {
         final ResourceConfig rc = new ResourceConfig()

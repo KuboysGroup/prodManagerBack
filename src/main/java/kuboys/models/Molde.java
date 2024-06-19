@@ -18,8 +18,8 @@ public class Molde extends Produto{
     public Molde() {
     }
 
-    public Molde(String nome, Dimensoes dimensoes, boolean tratamentoTermico, EnumTipoInjecao tipoInjecao, EnumRamoProduto ramoMolde, List<Componente> componentes) {
-        super(nome, dimensoes, tratamentoTermico);
+    public Molde(String nome, Dimensoes dimensoes, boolean tratamentoTermico, int quantidade, EnumTipoInjecao tipoInjecao, EnumRamoProduto ramoMolde, List<Componente> componentes) {
+        super(nome, dimensoes, tratamentoTermico, quantidade);
         this.tipoInjecao = tipoInjecao;
         this.ramoMolde = ramoMolde;
         this.componentes = componentes;
