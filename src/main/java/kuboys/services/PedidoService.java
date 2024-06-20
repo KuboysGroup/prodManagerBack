@@ -137,8 +137,9 @@ public class PedidoService {
         Material material2 = new Material("Alumínio", 200);
         Material material3 = new Material("Cobre", 150);
         Material material4 = new Material("Borracha", 234);
+        Material material5 = new Material("Areia", 500);
 
-        materialList.addAll(Arrays.asList(material1, material2, material3));
+        materialList.addAll(Arrays.asList(material1, material2, material3, material4, material5));
 
         Componente componente1 = new Componente("Parafuso", Arrays.asList(material1), 500);
         Componente componente2 = new Componente("Porca", Arrays.asList(material2), 300);
@@ -146,34 +147,23 @@ public class PedidoService {
 
         componentsList.addAll(Arrays.asList(componente1, componente2, componente3));
 
-        SistemaCamaraQuente produto1 = new SistemaCamaraQuente("Sistema A", new Dimensoes(10.0, 5.0, 2.0), true, 12, material1, 200.0);
+        SistemaCamaraQuente sistema1 = new SistemaCamaraQuente("Sistema A", new Dimensoes(10.0, 5.0, 2.0), true, 12, material1, 200.0);
+        SistemaCamaraQuente sistema2 = new SistemaCamaraQuente("Sistema B", new Dimensoes(12.43, 10.0, 3.0), true, 3, material2, 133.0);
         Ferramenta ferramenta1 = new Ferramenta("Ferramenta B", new Dimensoes(15.0, 7.5, 3.0), false, 43, EnumTipoFerramenta.BROCA, material2, material3, "Uso Geral");
         Ferramenta ferramenta2 = new Ferramenta("Ferramenta A", new Dimensoes(4.0, 73.5, 12.0), false, 21, EnumTipoFerramenta.CABECOTE, material4, material3, "Uso Geral");
         Molde molde1 = new Molde("Molde C", new Dimensoes(20.0, 10.0, 4.0), true, 3, EnumTipoInjecao.ALUMINIO, EnumRamoProduto.AUTOMOTIVO, Arrays.asList(componente1, componente2));
 
-//        produtosList.addAll(Arrays.asList(
-//                new ProdutoPedido(produto1, 10),
-//                new ProdutoPedido(produto2, 5),
-//                new ProdutoPedido(produto3, 2)
-//        ));
-//
-//        Pedido pedido1 = new Pedido(Arrays.asList(
-//                new ProdutoPedido(produto1, 10),
-//                new ProdutoPedido(produto2, 5)
-//        ), Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO);
-
         PedidoFerramentas pedidoFerramentas1 = new PedidoFerramentas(Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO, Arrays.asList(ferramenta1, ferramenta2));
         PedidoFerramentas pedidoFerramentas2 = new PedidoFerramentas(Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO, Arrays.asList(ferramenta2));
-
-        PedidoMoldes pedido2 = new PedidoMoldes(Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO, Arrays.asList(
-                molde1
-        ));
+        PedidoMoldes pedido2 = new PedidoMoldes(Data.hoje(), dataFutura, EnumStatusPedido.EM_ABERTO, Arrays.asList(molde1));
+        PedidoSistemaCamaraQuente pedidoSistema1 = new PedidoSistemaCamaraQuente(Data.hoje(), dataFutura, EnumStatusPedido.EM_PRODUCAO, Arrays.asList(sistema1, sistema2));
 
         pedidosFerramentasMap.put(pedidoFerramentas1.getId(), pedidoFerramentas1);
         pedidosFerramentasMap.put(pedidoFerramentas2.getId(), pedidoFerramentas2);
         pedidosMoldeMap.put(pedido2.getId(), pedido2);
-//        pedidosMap.put(pedido2.getId(), pedido2);
-//        System.out.println("TERMINOU DE gerar registros teste");
+        pedidosSistemaCamaraQuenteMap.put(pedidoSistema1.getId(), pedidoSistema1);
+
+        System.out.println("TERMINOU DE gerar registros teste");
     }
 
     public static String gerarTesteComRetorno(){
