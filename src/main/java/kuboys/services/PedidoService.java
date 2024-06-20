@@ -76,7 +76,7 @@ public class PedidoService {
         for (Material mat : materialList) {
             if (mat.getNome().equals(nomeMaterial)) {
                 if (entrada) {
-                    mat.setQuantEstoque(mat.getQuantEstoque() + quant);
+                    mat.setQuantEstoque(quant);
                 } else {
                     if (mat.getQuantEstoque() - quant < 0) {
                         throw new GestException(EnumGravidadeException.INFO, "A quantidade de retirada é superior ao saldo do material no estoque");
