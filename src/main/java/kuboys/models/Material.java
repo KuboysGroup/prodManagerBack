@@ -1,15 +1,13 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
-import java.io.Serializable;
-
-public class Material implements Serializable {
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+public class Material {
+    @JsonProperty("nome")
     private String nome;
+    @JsonProperty("quantEstoque")
     private int quantEstoque;
 
     public Material() {
-        this.nome = "";
-        this.quantEstoque = 0;
     }
 
     public Material(String nome, int quantEstoque) {

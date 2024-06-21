@@ -1,26 +1,25 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
-import kuboys.gestProd.enums.EnumRamoProduto;
-import kuboys.gestProd.enums.EnumTipoInjecao;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import kuboys.enums.EnumRamoProduto;
+import kuboys.enums.EnumTipoInjecao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Molde extends Produto{
-
+    @JsonProperty("tipoInjecao")
     private EnumTipoInjecao tipoInjecao;
+    @JsonProperty("ramoMolde")
     private EnumRamoProduto ramoMolde;
+    @JsonProperty("componentes")
     private List<Componente> componentes;
 
     public Molde() {
-        super();
-        this.tipoInjecao = null;
-        this.ramoMolde = null;
-        this.componentes = new ArrayList<>();
     }
 
-    public Molde(String nome, Dimensoes dimensoes, boolean tratamentoTermico, EnumTipoInjecao tipoInjecao, EnumRamoProduto ramoMolde, List<Componente> componentes) {
-        super(nome, dimensoes, tratamentoTermico);
+    public Molde(String nome, Dimensoes dimensoes, boolean tratamentoTermico, int quantidade, EnumTipoInjecao tipoInjecao, EnumRamoProduto ramoMolde, List<Componente> componentes) {
+        super(nome, dimensoes, tratamentoTermico, quantidade);
         this.tipoInjecao = tipoInjecao;
         this.ramoMolde = ramoMolde;
         this.componentes = componentes;

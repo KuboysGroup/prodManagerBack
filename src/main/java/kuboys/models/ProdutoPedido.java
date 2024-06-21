@@ -1,11 +1,15 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
-import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonProperty;
+public class ProdutoPedido {
+    @JsonProperty("produto")
+    private Produto produto;
 
-import java.io.Serializable;
-public class ProdutoPedido implements Serializable {
-    Produto produto;
-    Integer quantidade;
+    @JsonProperty("quantidade")
+    private Integer quantidade;
+
+    public ProdutoPedido() {
+    }
 
     public ProdutoPedido(Produto produto, Integer quantidade) {
         this.produto = produto;

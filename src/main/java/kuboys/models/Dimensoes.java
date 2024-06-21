@@ -1,17 +1,18 @@
-package kuboys.gestProd.models;
+package kuboys.models;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-public class Dimensoes implements Serializable {
-
+public class Dimensoes {
+    @JsonProperty("altura")
     private double altura;
+    @JsonProperty("largura")
     private double largura;
+    @JsonProperty("profundidade")
     private double profundidade;
 
     public Dimensoes() {
-        this.altura = 0.0;
-        this.largura = 0.0;
-        this.profundidade = 0.0;
     }
 
     public Dimensoes(double altura, double largura, double profundidade) {

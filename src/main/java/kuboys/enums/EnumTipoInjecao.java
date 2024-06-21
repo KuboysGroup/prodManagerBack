@@ -1,16 +1,15 @@
-package kuboys.gestProd.enums;
+package kuboys.enums;
 
-public enum EnumStatusPedido {
+public enum EnumTipoInjecao {
 
-    EM_ABERTO("AB", "Em aberto"),
-    EM_PRODUCAO("PR", "Em produção"),
-    FINALIZADO("FI", "Finalizado"),
-    CANCELADO("CA", "Cancelado");
+    ALUMINIO("AL", "Alumínio"),
+    BORRACHA("BO", "Borracha"),
+    PLASTICO("PL", "Plástico");
 
     private String codigo;
     private String descricao;
 
-    EnumStatusPedido(String codigo, String descricao) {
+    EnumTipoInjecao(String codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -31,8 +30,8 @@ public enum EnumStatusPedido {
         this.descricao = descricao;
     }
 
-    public static EnumStatusPedido getPorCodigo(String codigo) {
-        for (EnumStatusPedido tipo : values()) {
+    public static EnumTipoInjecao getPorCodigo(String codigo) {
+        for (EnumTipoInjecao tipo : values()) {
             if (tipo.codigo.equals(codigo)) {
                 return tipo;
             }

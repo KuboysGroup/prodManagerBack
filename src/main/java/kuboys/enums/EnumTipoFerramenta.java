@@ -1,15 +1,17 @@
-package kuboys.gestProd.enums;
+package kuboys.enums;
 
-public enum EnumTipoInjecao {
+public enum EnumTipoFerramenta {
 
-    ALUMINIO("AL", "Alumínio"),
-    BORRACHA("BO", "Borracha"),
-    PLASTICO("PL", "Plástico");
+    BITS("BI", "Bits"),
+    BROCA("BR", "Broca"),
+    CABECOTE("CB", "Cabeçote"),
+    FRESA("FR", "Fresa"),
+    INSERTO("IN", "Insertos");
 
     private String codigo;
     private String descricao;
 
-    EnumTipoInjecao(String codigo, String descricao) {
+    EnumTipoFerramenta(String codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -30,8 +32,8 @@ public enum EnumTipoInjecao {
         this.descricao = descricao;
     }
 
-    public static EnumTipoInjecao getPorCodigo(String codigo) {
-        for (EnumTipoInjecao tipo : values()) {
+    public static EnumTipoFerramenta getPorCodigo(String codigo) {
+        for (EnumTipoFerramenta tipo : values()) {
             if (tipo.codigo.equals(codigo)) {
                 return tipo;
             }

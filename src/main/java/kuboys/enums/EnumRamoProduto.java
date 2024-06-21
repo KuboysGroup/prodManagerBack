@@ -1,4 +1,4 @@
-package kuboys.gestProd.enums;
+package kuboys.enums;
 
 public enum EnumRamoProduto {
 

@@ -1,24 +1,23 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
-import kuboys.gestProd.enums.EnumTipoFerramenta;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import kuboys.enums.EnumTipoFerramenta;
 
 public class Ferramenta extends Produto{
-
+    @JsonProperty("tipoFerramenta")
     private EnumTipoFerramenta tipoFerramenta;
+    @JsonProperty("composicao")
     private Material composicao;
+    @JsonProperty("revestimento")
     private Material revestimento;
+    @JsonProperty("finalidade")
     private String finalidade;
 
     public Ferramenta() {
-        super();
-        this.tipoFerramenta = null;
-        this.composicao = new Material();
-        this.revestimento = new Material();
-        this.finalidade = "";
     }
 
-    public Ferramenta(String nome, Dimensoes dimensoes, boolean tratamentoTermico, EnumTipoFerramenta tipoFerramenta, Material composicao, Material revestimento, String finalidade) {
-        super(nome, dimensoes, tratamentoTermico);
+    public Ferramenta(String nome, Dimensoes dimensoes, boolean tratamentoTermico, int quantidade, EnumTipoFerramenta tipoFerramenta, Material composicao, Material revestimento, String finalidade) {
+        super(nome, dimensoes, tratamentoTermico, quantidade);
         this.tipoFerramenta = tipoFerramenta;
         this.composicao = composicao;
         this.revestimento = revestimento;

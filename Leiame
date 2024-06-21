@@ -1,0 +1,3 @@
+
+repositório frontend: https://github.com/KuboysGroup/frontend
+rodar frontend: flutter run -d edge --web-browser-flag '--disable-web-security'

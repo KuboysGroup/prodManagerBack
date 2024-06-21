@@ -1,18 +1,17 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 public class SistemaCamaraQuente extends Produto{
-
+    @JsonProperty("materialResistencia")
     private Material materialResistencia;
+    @JsonProperty("tempOperacao")
     private double tempOperacao;
 
     public SistemaCamaraQuente() {
-        super();
-        this.materialResistencia = new Material();
-        this.tempOperacao = 0.0;
     }
 
-    public SistemaCamaraQuente(String nome, Dimensoes dimensoes, boolean tratamentoTermico, Material materialResistencia, double tempOperacao) {
-        super(nome, dimensoes, tratamentoTermico);
+    public SistemaCamaraQuente(String nome, Dimensoes dimensoes, boolean tratamentoTermico, int quantidade, Material materialResistencia, double tempOperacao) {
+        super(nome, dimensoes, tratamentoTermico, quantidade);
         this.materialResistencia = materialResistencia;
         this.tempOperacao = tempOperacao;
     }

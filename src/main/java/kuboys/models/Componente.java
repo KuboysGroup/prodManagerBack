@@ -1,19 +1,18 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Componente  implements Serializable {
-
+public class Componente {
+    @JsonProperty("nome")
     private String nome;
+    @JsonProperty("composicao")
     private List<Material> composicao;
+    @JsonProperty("quantEstoque")
     private int quantEstoque;
 
     public Componente() {
-        this.nome = "";
-        this.composicao = new ArrayList<>();
-        this.quantEstoque = 0;
     }
 
     public Componente(String nome, List<Material> composicao, int quantEstoque) {

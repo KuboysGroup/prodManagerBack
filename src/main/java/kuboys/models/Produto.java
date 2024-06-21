@@ -1,22 +1,24 @@
-package kuboys.gestProd.models;
+package kuboys.models;
 
-import java.io.Serializable;
-public abstract class Produto implements Serializable {
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+public class Produto {
+    @JsonProperty("nome")
     protected String nome;
+    @JsonProperty("dimensoes")
     protected Dimensoes dimensoes;
+    @JsonProperty("tratamentoTermico")
     protected boolean tratamentoTermico;
+    @JsonProperty("quantidade")
+    protected int quantidade;
 
     public Produto() {
-        this.nome = "";
-        this.dimensoes = new Dimensoes();
-        this.tratamentoTermico = false;
     }
 
-    public Produto(String nome, Dimensoes dimensoes, boolean tratamentoTermico) {
+    public Produto(String nome, Dimensoes dimensoes, boolean tratamentoTermico, int quantidade) {
         this.nome = nome;
         this.dimensoes = dimensoes;
         this.tratamentoTermico = tratamentoTermico;
+        this.quantidade = quantidade;
     }
 
     public String getNome() {
@@ -43,5 +45,11 @@ public abstract class Produto implements Serializable {
         this.tratamentoTermico = tratamentoTermico;
     }
 
+    public int getQuantidade() {
+        return quantidade;
+    }
 
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
 }
